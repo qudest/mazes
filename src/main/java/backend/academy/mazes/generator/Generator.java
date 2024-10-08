@@ -1,6 +1,6 @@
 package backend.academy.mazes.generator;
 
-import backend.academy.mazes.maze.Coordinate;
+import backend.academy.mazes.maze.coordinate.Coordinate;
 import backend.academy.mazes.maze.Maze;
 
 public interface Generator {

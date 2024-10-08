@@ -1,6 +1,6 @@
 package backend.academy.mazes.solver;
 
-import backend.academy.mazes.maze.Coordinate;
+import backend.academy.mazes.maze.coordinate.Coordinate;
 import backend.academy.mazes.maze.Maze;
 import java.util.List;
 

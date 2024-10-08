@@ -1,8 +1,8 @@
 package backend.academy.mazes.generator;
 
-import backend.academy.mazes.maze.Shift;
+import backend.academy.mazes.maze.coordinate.Shift;
 import backend.academy.mazes.maze.Cell;
-import backend.academy.mazes.maze.Coordinate;
+import backend.academy.mazes.maze.coordinate.Coordinate;
 import backend.academy.mazes.maze.Maze;
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package backend.academy.mazes.maze;
+package backend.academy.mazes.maze.coordinate;
 
 public record Shift(int y, int x) {
 

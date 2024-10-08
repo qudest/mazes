@@ -1,5 +1,6 @@
 package backend.academy.mazes.maze;
 
+import backend.academy.mazes.maze.coordinate.Coordinate;
 import java.util.Arrays;
 
 public final class Maze {
