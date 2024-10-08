@@ -22,4 +22,8 @@ public final class Maze {
         this.grid = grid;
     }
 
+    public boolean isWall(Coordinate coordinate) {
+        return grid[coordinate.y()][coordinate.x()].type().equals(Cell.Type.WALL);
+    }
+
 }
