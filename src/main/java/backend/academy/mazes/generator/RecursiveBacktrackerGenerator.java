@@ -28,7 +28,7 @@ public class RecursiveBacktrackerGenerator implements Generator {
 
         int yStart = start.y();
         int xStart = start.x();
-        grid[yStart][xStart] = new Cell(yStart, xStart, Cell.Type.PASSAGE);
+        grid[yStart][xStart] = new Cell(Cell.Type.PASSAGE);
 
         carvePassagesFrom(grid, start);
 
@@ -39,7 +39,7 @@ public class RecursiveBacktrackerGenerator implements Generator {
         Cell[][] grid = new Cell[height][width];
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
-                grid[row][col] = new Cell(row, col, Cell.Type.WALL);
+                grid[row][col] = new Cell(Cell.Type.WALL);
             }
         }
         return grid;
@@ -52,8 +52,8 @@ public class RecursiveBacktrackerGenerator implements Generator {
             if (isAvailableForMove(grid, to)) {
                 int yBetween = from.y() + shift.y() / 2;
                 int xBetween = from.x() + shift.x() / 2;
-                grid[yBetween][xBetween] = new Cell(yBetween, xBetween, Cell.Type.PASSAGE);
-                grid[to.y()][to.x()] = new Cell(to.y(), to.x(), Cell.Type.PASSAGE);
+                grid[yBetween][xBetween] = new Cell(Cell.Type.PASSAGE);
+                grid[to.y()][to.x()] = new Cell(Cell.Type.PASSAGE);
                 carvePassagesFrom(grid, to);
             }
         }

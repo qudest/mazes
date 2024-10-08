@@ -5,8 +5,6 @@ import java.util.Arrays;
 
 public final class Maze {
 
-    private final int height;
-    private final int width;
     private final Cell[][] grid;
 
     public Cell[][] getGrid() {
@@ -18,8 +16,6 @@ public final class Maze {
     }
 
     public Maze(Cell[][] grid) {
-        this.height = grid.length;
-        this.width = grid[0].length;
         this.grid = grid;
     }
 
