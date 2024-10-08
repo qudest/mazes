@@ -1,15 +1,21 @@
 package backend.academy.mazes.generator;
 
+import backend.academy.mazes.maze.Shift;
 import backend.academy.mazes.maze.Cell;
 import backend.academy.mazes.maze.Coordinate;
 import backend.academy.mazes.maze.Maze;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class RecursiveBacktrackerGenerator implements Generator {
 
-    private final List<Direction> directions = Arrays.asList(Direction.values());
+    private final List<Shift> shifts = new ArrayList<>(List.of(
+        new Shift(0, 2),
+        new Shift(2, 0),
+        new Shift(0, -2),
+        new Shift(-2, 0)
+    ));
 
     @Override
     public Maze generate(int height, int width) {
@@ -20,8 +26,8 @@ public class RecursiveBacktrackerGenerator implements Generator {
     public Maze generate(int height, int width, Coordinate start) {
         Cell[][] grid = getFilledGrid(height, width);
 
-        int yStart = start.row();
-        int xStart = start.col();
+        int yStart = start.y();
+        int xStart = start.x();
         grid[yStart][xStart] = new Cell(yStart, xStart, Cell.Type.PASSAGE);
 
         carvePassagesFrom(grid, start);
@@ -40,41 +46,24 @@ public class RecursiveBacktrackerGenerator implements Generator {
     }
 
     private void carvePassagesFrom(Cell[][] grid, Coordinate from) {
-        Collections.shuffle(directions);
-        for (Direction direction : directions) {
-            int y = from.row() + direction.yShift;
-            int x = from.col() + direction.xShift;
-            Coordinate to = new Coordinate(y, x);
+        Collections.shuffle(shifts);
+        for (Shift shift : shifts) {
+            Coordinate to = shift.getShiftedCoordinate(from);
             if (isAvailableForMove(grid, to)) {
-                int yBetween = from.row() + direction.yShift / 2;
-                int xBetween = from.col() + direction.xShift / 2;
+                int yBetween = from.y() + shift.y() / 2;
+                int xBetween = from.x() + shift.x() / 2;
                 grid[yBetween][xBetween] = new Cell(yBetween, xBetween, Cell.Type.PASSAGE);
-                grid[y][x] = new Cell(y, x, Cell.Type.PASSAGE);
+                grid[to.y()][to.x()] = new Cell(to.y(), to.x(), Cell.Type.PASSAGE);
                 carvePassagesFrom(grid, to);
             }
         }
     }
 
     private boolean isAvailableForMove(Cell[][] grid, Coordinate to) {
-        int y = to.row();
-        int x = to.col();
+        int y = to.y();
+        int x = to.x();
         return (y > 0 && y < grid.length - 1 && x > 0 && x < grid[0].length - 1 &&
             grid[y][x].type().equals(Cell.Type.WALL));
-    }
-
-    enum Direction {
-        RIGHT(0, 2),
-        DOWN(2, 0),
-        LEFT(0, -2),
-        UP(-2, 0);
-
-        private final int yShift;
-        private final int xShift;
-
-        Direction(int yShift, int xShift) {
-            this.yShift = yShift;
-            this.xShift = xShift;
-        }
     }
 
 }
