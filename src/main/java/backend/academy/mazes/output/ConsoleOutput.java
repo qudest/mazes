@@ -35,7 +35,12 @@ public class ConsoleOutput implements Output {
 
     @Override
     public void displaySizeSelection() {
-        printStream.println("Выберите размеры лабиринта в формате {высота ширина}:");
+        printStream.println("""
+
+            Выберите размеры лабиринта в формате {высота ширина}
+            Минимальный размер 3x3
+            Максимальный размер 100x100
+            """);
     }
 
     @Override
@@ -46,6 +51,7 @@ public class ConsoleOutput implements Output {
             printStream.println(counter + ". " + generator);
             counter++;
         }
+        printStream.println();
 
     }
 
@@ -57,6 +63,7 @@ public class ConsoleOutput implements Output {
             printStream.println(counter + ". " + solver);
             counter++;
         }
+        printStream.println();
     }
 
     @Override
@@ -66,18 +73,19 @@ public class ConsoleOutput implements Output {
 
     @Override
     public void displayMaze(String maze) {
+        printStream.println("\nЛабиринт:");
         printStream.println(maze);
     }
 
     @Override
     public void displayStartCoordinateSelection() {
-        printStream.println("Ввод стартовой координаты");
+        printStream.println("\nВвод стартовой координаты");
         displayCoordinateSelection();
     }
 
     @Override
     public void displayEndCoordinateSelection() {
-        printStream.println("Ввод конечной координаты");
+        printStream.println("\nВвод конечной координаты");
         displayCoordinateSelection();
     }
 
