@@ -23,4 +23,12 @@ public final class Maze {
         return grid[coordinate.y()][coordinate.x()].type().equals(Cell.Type.WALL);
     }
 
+    public int getHeight() {
+        return grid.length;
+    }
+
+    public int getWidth() {
+        return grid[0].length;
+    }
+
 }
