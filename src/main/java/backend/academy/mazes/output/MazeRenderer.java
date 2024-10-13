@@ -4,6 +4,7 @@ import backend.academy.mazes.maze.Cell;
 import backend.academy.mazes.maze.coordinate.Coordinate;
 import backend.academy.mazes.maze.Maze;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class MazeRenderer implements Renderer {
 
@@ -23,11 +24,24 @@ public class MazeRenderer implements Renderer {
     public String render(Maze maze) {
         StringBuilder stringBuilder = new StringBuilder();
         Cell[][] grid = maze.getGrid();
+
+        renderColumnNumbers(stringBuilder, grid);
+
+        int lineCounter = 0;
         for (Cell[] row : grid) {
+
+            stringBuilder.append(lineCounter);
+            stringBuilder.append(" ");
+            if (lineCounter < 10) {
+                stringBuilder.append(" ");
+            }
+
             for (Cell cell : row) {
                 stringBuilder.append(renderCell(cell, null, null));
             }
             stringBuilder.append(LINE_BREAK);
+
+            lineCounter++;
         }
         return stringBuilder.toString();
     }
@@ -36,15 +50,41 @@ public class MazeRenderer implements Renderer {
     public String render(Maze maze, List<Coordinate> path) {
         StringBuilder stringBuilder = new StringBuilder();
         Cell[][] grid = maze.getGrid();
+
+        renderColumnNumbers(stringBuilder, grid);
+
+        int lineCounter = 0;
         for (int row = 0; row < grid.length; row++) {
+
+            stringBuilder.append(lineCounter);
+            stringBuilder.append(" ");
+            if (lineCounter < 10) {
+                stringBuilder.append(" ");
+            }
+
             for (int col = 0; col < grid[row].length; col++) {
                 Cell cell = grid[row][col];
                 Coordinate coordinate = new Coordinate(row, col);
                 stringBuilder.append(renderCell(cell, coordinate, path));
             }
             stringBuilder.append(LINE_BREAK);
+
+            lineCounter++;
         }
         return stringBuilder.toString();
+    }
+
+    private void renderColumnNumbers(StringBuilder stringBuilder, Cell[][] grid) {
+        stringBuilder.append("   ");
+        IntStream.range(0, grid[0].length).forEach(i ->
+        {
+            if (i < 10) {
+                stringBuilder.append(" ");
+            }
+            stringBuilder.append(i);
+            stringBuilder.append(" ");
+        });
+        stringBuilder.append(LINE_BREAK);
     }
 
     private String renderCell(Cell cell, Coordinate cellCoordinate, List<Coordinate> path) {
