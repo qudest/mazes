@@ -66,4 +66,8 @@ public class RecursiveBacktrackerGenerator implements Generator {
             grid[y][x].type().equals(Cell.Type.WALL));
     }
 
+    @Override public String toString() {
+        return "Recursive Backtracker";
+    }
+
 }

@@ -48,4 +48,8 @@ public class RecursiveBacktrackerSolver implements Solver {
         return false;
     }
 
+    @Override public String toString() {
+        return "Recursive Backtracker";
+    }
+
 }
