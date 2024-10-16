@@ -1,7 +1,8 @@
 package backend.academy.mazes.output;
 
-import backend.academy.mazes.generator.GeneratorPool;
-import backend.academy.mazes.solver.SolverPool;
+import backend.academy.mazes.generator.Generator;
+import backend.academy.mazes.solver.Solver;
+import java.util.List;
 
 public interface Output {
 
@@ -9,9 +10,9 @@ public interface Output {
 
     void displaySizeSelection();
 
-    void displayGeneratorSelection(GeneratorPool generatorPool);
+    void displayGeneratorSelection(List<Generator> generators);
 
-    void displaySolverSelection(SolverPool solverPool);
+    void displaySolverSelection(List<Solver> solvers);
 
     void displayException(String exceptionMessage);
 

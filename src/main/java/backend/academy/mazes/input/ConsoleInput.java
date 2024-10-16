@@ -1,14 +1,13 @@
 package backend.academy.mazes.input;
 
 import backend.academy.mazes.generator.Generator;
-import backend.academy.mazes.generator.GeneratorPool;
 import backend.academy.mazes.maze.Maze;
 import backend.academy.mazes.maze.Size;
 import backend.academy.mazes.maze.coordinate.Coordinate;
 import backend.academy.mazes.solver.Solver;
-import backend.academy.mazes.solver.SolverPool;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.List;
 
 public class ConsoleInput implements Input {
 
@@ -46,20 +45,20 @@ public class ConsoleInput implements Input {
     }
 
     @Override
-    public Generator inputGenerator(GeneratorPool generatorPool) throws IOException {
+    public Generator inputGenerator(List<Generator> generators) throws IOException {
         try {
             int item = parseInt(bufferedReader.readLine());
-            return generatorPool.generators().get(item - 1);
+            return generators.get(item - 1);
         } catch (Exception e) {
             throw new IOException(INVALID_INPUT);
         }
     }
 
     @Override
-    public Solver inputSolver(SolverPool solverPool) throws IOException {
+    public Solver inputSolver(List<Solver> solvers) throws IOException {
         try {
             int item = parseInt(bufferedReader.readLine());
-            return solverPool.solvers().get(item - 1);
+            return solvers.get(item - 1);
         } catch (Exception e) {
             throw new IOException(INVALID_INPUT);
         }

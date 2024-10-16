@@ -1,13 +1,12 @@
 package backend.academy.mazes.input;
 
 import backend.academy.mazes.generator.Generator;
-import backend.academy.mazes.generator.GeneratorPool;
 import backend.academy.mazes.maze.Maze;
 import backend.academy.mazes.maze.Size;
 import backend.academy.mazes.maze.coordinate.Coordinate;
 import backend.academy.mazes.solver.Solver;
-import backend.academy.mazes.solver.SolverPool;
 import java.io.IOException;
+import java.util.List;
 
 public interface Input {
 
@@ -15,8 +14,8 @@ public interface Input {
 
     Coordinate inputCoordinate(Maze maze) throws IOException;
 
-    Generator inputGenerator(GeneratorPool generatorPool) throws IOException;
+    Generator inputGenerator(List<Generator> generators) throws IOException;
 
-    Solver inputSolver(SolverPool solverPool) throws IOException;
+    Solver inputSolver(List<Solver> solvers) throws IOException;
 
 }

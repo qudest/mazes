@@ -1,10 +1,9 @@
 package backend.academy.mazes.output;
 
 import backend.academy.mazes.generator.Generator;
-import backend.academy.mazes.generator.GeneratorPool;
 import backend.academy.mazes.solver.Solver;
-import backend.academy.mazes.solver.SolverPool;
 import java.io.PrintStream;
+import java.util.List;
 
 public class ConsoleOutput implements Output {
 
@@ -44,10 +43,10 @@ public class ConsoleOutput implements Output {
     }
 
     @Override
-    public void displayGeneratorSelection(GeneratorPool generatorPool) {
+    public void displayGeneratorSelection(List<Generator> generators) {
         printStream.println("Выберите алгоритм генерации лабиринта: ");
         int counter = 1;
-        for (Generator generator : generatorPool.generators()) {
+        for (Generator generator : generators) {
             printStream.println(counter + ". " + generator);
             counter++;
         }
@@ -56,10 +55,10 @@ public class ConsoleOutput implements Output {
     }
 
     @Override
-    public void displaySolverSelection(SolverPool solverPool) {
+    public void displaySolverSelection(List<Solver> solvers) {
         printStream.println("Выберите алгоритм поиска пути: ");
         int counter = 1;
-        for (Solver solver : solverPool.solvers()) {
+        for (Solver solver : solvers) {
             printStream.println(counter + ". " + solver);
             counter++;
         }
