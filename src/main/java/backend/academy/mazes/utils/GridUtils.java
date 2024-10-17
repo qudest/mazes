@@ -22,4 +22,10 @@ public final class GridUtils {
             grid[y][x].type().equals(Cell.Type.WALL));
     }
 
+    public static void removeWallBetween(Cell[][] grid, Coordinate from, Coordinate to) {
+        int yBetween = (from.y() + to.y()) / 2;
+        int xBetween = (from.x() + to.x()) / 2;
+        grid[yBetween][xBetween] = new Cell(Cell.Type.PASSAGE);
+    }
+
 }
