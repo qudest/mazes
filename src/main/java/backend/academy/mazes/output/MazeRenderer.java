@@ -9,41 +9,22 @@ import java.util.stream.IntStream;
 public class MazeRenderer implements Renderer {
 
     private static final String ANSI_RESET = "\u001B[0m";
-    private static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
-    private static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
-    private static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
-    private static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
-    private static final String PASSAGE_SPRITE = ANSI_WHITE_BACKGROUND + "   " + ANSI_RESET;
-    private static final String WALL_SPRITE = ANSI_BLACK_BACKGROUND + "   " + ANSI_RESET;
-    private static final String PATH_SPRITE = ANSI_GREEN_BACKGROUND + "   " + ANSI_RESET;
-    private static final String START_SPRITE = ANSI_CYAN_BACKGROUND + "   " + ANSI_RESET;
-    private static final String END_SPRITE = START_SPRITE;
+
+    private static final String WALL_BACKGROUND = "\u001B[40m";
+    private static final String PASSAGE_BACKGROUND = "\u001B[47m";
+    private static final String PATH_BACKGROUND = "\u001B[42m";
+    private static final String ENDS_BACKGROUND = "\u001B[46m";
+
+    private static final String WALL_SPRITE = WALL_BACKGROUND + "   " + ANSI_RESET;
+    private static final String PASSAGE_SPRITE = "   " + ANSI_RESET;
+    private static final String BOOST_SPRITE = " \u001B[93m● " + ANSI_RESET;
+    private static final String DELAY_SPRITE = " \u001B[91m╳ " + ANSI_RESET;
+
     private static final String LINE_BREAK = "\n";
 
     @Override
     public String render(Maze maze) {
-        StringBuilder stringBuilder = new StringBuilder();
-        Cell[][] grid = maze.getGrid();
-
-        renderColumnNumbers(stringBuilder, grid);
-
-        int lineCounter = 0;
-        for (Cell[] row : grid) {
-
-            stringBuilder.append(lineCounter);
-            stringBuilder.append(" ");
-            if (lineCounter < 10) {
-                stringBuilder.append(" ");
-            }
-
-            for (Cell cell : row) {
-                stringBuilder.append(renderCell(cell, null, null));
-            }
-            stringBuilder.append(LINE_BREAK);
-
-            lineCounter++;
-        }
-        return stringBuilder.toString();
+        return render(maze, null);
     }
 
     @Override
@@ -51,18 +32,17 @@ public class MazeRenderer implements Renderer {
         StringBuilder stringBuilder = new StringBuilder();
         Cell[][] grid = maze.getGrid();
 
-        renderColumnNumbers(stringBuilder, grid);
+        renderColumnNumbers(stringBuilder, maze.getWidth());
 
         int lineCounter = 0;
-        for (int row = 0; row < grid.length; row++) {
-
+        for (int row = 0; row < maze.getHeight(); row++) {
             stringBuilder.append(lineCounter);
             stringBuilder.append(" ");
             if (lineCounter < 10) {
                 stringBuilder.append(" ");
             }
 
-            for (int col = 0; col < grid[row].length; col++) {
+            for (int col = 0; col < maze.getWidth(); col++) {
                 Cell cell = grid[row][col];
                 Coordinate coordinate = new Coordinate(row, col);
                 stringBuilder.append(renderCell(cell, coordinate, path));
@@ -74,9 +54,9 @@ public class MazeRenderer implements Renderer {
         return stringBuilder.toString();
     }
 
-    private void renderColumnNumbers(StringBuilder stringBuilder, Cell[][] grid) {
+    private void renderColumnNumbers(StringBuilder stringBuilder, int width) {
         stringBuilder.append("   ");
-        IntStream.range(0, grid[0].length).forEach(i ->
+        IntStream.range(0, width).forEach(i ->
         {
             if (i < 10) {
                 stringBuilder.append(" ");
@@ -91,21 +71,29 @@ public class MazeRenderer implements Renderer {
         if (cell.type().equals(Cell.Type.WALL)) {
             return WALL_SPRITE;
         } else {
-            return renderPassage(cellCoordinate, path);
+            return renderPassage(cell, cellCoordinate, path);
         }
     }
 
-    private String renderPassage(Coordinate cellCoordinate, List<Coordinate> path) {
-        if (path != null && !path.isEmpty()) {
-            if (path.getFirst().equals(cellCoordinate)) {
-                return START_SPRITE;
-            } else if (path.getLast().equals(cellCoordinate)) {
-                return END_SPRITE;
-            } else if (path.contains(cellCoordinate)) {
-                return PATH_SPRITE;
-            }
+    private String renderPassage(Cell cell, Coordinate cellCoordinate, List<Coordinate> path) {
+        return getBackgroundColor(cellCoordinate, path) + getSprite(cell);
+    }
+
+    private String getBackgroundColor(Coordinate cellCoordinate, List<Coordinate> path) {
+        if (path != null && !path.isEmpty() && path.contains(cellCoordinate)) {
+            return path.getFirst().equals(cellCoordinate) || path.getLast().equals(cellCoordinate)
+                ? ENDS_BACKGROUND
+                : PATH_BACKGROUND;
         }
-        return PASSAGE_SPRITE;
+        return PASSAGE_BACKGROUND;
+    }
+
+    private String getSprite(Cell cell) {
+        return switch (cell.type()) {
+            case BOOST -> BOOST_SPRITE;
+            case DELAY -> DELAY_SPRITE;
+            default -> PASSAGE_SPRITE;
+        };
     }
 
 }
