@@ -42,7 +42,7 @@ public class RecursiveBacktrackerGenerator implements Generator {
             Coordinate to = shift.getShiftedCoordinate(from);
             if (GridUtils.isAvailableForMove(grid, to)) {
                 GridUtils.removeWallBetween(grid, from, to);
-                grid[to.y()][to.x()] = new Cell(Cell.Type.PASSAGE);
+                grid[to.y()][to.x()] = new Cell(Cell.getRandomPassage());
                 carvePassagesFrom(grid, to);
             }
         }
