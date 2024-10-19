@@ -21,7 +21,8 @@ public class MazeRenderer implements Renderer {
     private static final String BOOST_SPRITE = " \u001B[93m● " + ANSI_RESET;
     private static final String DELAY_SPRITE = " \u001B[91m╳ " + ANSI_RESET;
 
-    private static final String LINE_BREAK = "\n";
+    private static final Character LINE_BREAK = '\n';
+    private static final Character SEPARATOR = ' ';
 
     @Override
     public String render(Maze maze) {
@@ -38,9 +39,9 @@ public class MazeRenderer implements Renderer {
         int lineCounter = 0;
         for (int row = 0; row < maze.getHeight(); row++) {
             stringBuilder.append(lineCounter);
-            stringBuilder.append(" ");
+            stringBuilder.append(SEPARATOR);
             if (String.valueOf(lineCounter).length() == 1) {
-                stringBuilder.append(" ");
+                stringBuilder.append(SEPARATOR);
             }
 
             for (int col = 0; col < maze.getWidth(); col++) {
@@ -59,10 +60,10 @@ public class MazeRenderer implements Renderer {
         stringBuilder.append(EMPTY_CELL_SPRITE);
         IntStream.range(0, width).forEach(i -> {
             if (String.valueOf(i).length() == 1) {
-                stringBuilder.append(" ");
+                stringBuilder.append(SEPARATOR);
             }
             stringBuilder.append(i);
-            stringBuilder.append(" ");
+            stringBuilder.append(SEPARATOR);
         });
         stringBuilder.append(LINE_BREAK);
     }
