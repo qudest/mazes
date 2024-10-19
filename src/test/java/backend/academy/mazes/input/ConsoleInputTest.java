@@ -6,12 +6,13 @@ import backend.academy.mazes.maze.Maze;
 import backend.academy.mazes.maze.Size;
 import backend.academy.mazes.maze.coordinate.Coordinate;
 import backend.academy.mazes.solver.Solver;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.List;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 class ConsoleInputTest {

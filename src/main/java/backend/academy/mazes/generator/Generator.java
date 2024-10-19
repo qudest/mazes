@@ -1,7 +1,7 @@
 package backend.academy.mazes.generator;
 
-import backend.academy.mazes.maze.coordinate.Coordinate;
 import backend.academy.mazes.maze.Maze;
+import backend.academy.mazes.maze.coordinate.Coordinate;
 
 public interface Generator {
 

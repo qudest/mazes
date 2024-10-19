@@ -1,8 +1,8 @@
 package backend.academy.mazes.output;
 
 import backend.academy.mazes.maze.Cell;
-import backend.academy.mazes.maze.coordinate.Coordinate;
 import backend.academy.mazes.maze.Maze;
+import backend.academy.mazes.maze.coordinate.Coordinate;
 import java.util.List;
 import java.util.stream.IntStream;
 

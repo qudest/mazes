@@ -1,11 +1,11 @@
 package backend.academy.mazes.maze;
 
 import backend.academy.mazes.utils.SecureRandomSingleton;
-import lombok.Getter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import lombok.Getter;
 
 public record Cell(Type type) {
 

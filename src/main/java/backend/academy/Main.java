@@ -8,10 +8,10 @@ import backend.academy.mazes.output.ConsoleOutput;
 import backend.academy.mazes.output.MazeRenderer;
 import backend.academy.mazes.solver.DijkstraSolver;
 import backend.academy.mazes.solver.RecursiveBacktrackerSolver;
-import lombok.experimental.UtilityClass;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.List;
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class Main {
