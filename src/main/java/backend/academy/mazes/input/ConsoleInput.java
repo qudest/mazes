@@ -23,21 +23,25 @@ public class ConsoleInput implements Input {
 
     @Override
     public Size inputSize() throws IOException {
-        int[] size = inputTwoIntArguments();
-        if (size[0] < Size.MIN_SIZE || size[1] < Size.MIN_SIZE || size[0] > Size.MAX_SIZE || size[1] > Size.MAX_SIZE) {
+        List<Integer> size = inputTwoIntArguments();
+        int height = size.getFirst();
+        int width = size.getLast();
+        if (height < Size.MIN_SIZE || width < Size.MIN_SIZE || height > Size.MAX_SIZE || width > Size.MAX_SIZE) {
             throw new IOException(INVALID_SIZE);
         }
-        return new Size(size[0], size[1]);
+        return new Size(height, width);
     }
 
     @Override
     public Coordinate inputCoordinate(Maze maze) throws IOException {
-        int[] arguments = inputTwoIntArguments();
-        if (arguments[0] < 0 || arguments[1] < 0
-            || arguments[0] >= maze.getHeight() || arguments[1] >= maze.getWidth()) {
+        List<Integer> arguments = inputTwoIntArguments();
+        int y = arguments.getFirst();
+        int x = arguments.getLast();
+        if (y < 0 || x < 0
+            || y >= maze.getHeight() || x >= maze.getWidth()) {
             throw new IOException(INVALID_COORDINATE);
         }
-        Coordinate coordinate = new Coordinate(arguments[0], arguments[1]);
+        Coordinate coordinate = new Coordinate(y, x);
         if (maze.isWall(coordinate)) {
             throw new IOException(INVALID_COORDINATE_WALL);
         }
@@ -72,12 +76,12 @@ public class ConsoleInput implements Input {
         }
     }
 
-    private int[] inputTwoIntArguments() throws IOException {
+    private List<Integer> inputTwoIntArguments() throws IOException {
         String line = bufferedReader.readLine();
         String[] parts = line.split(" ");
         if (parts.length != 2) {
             throw new IOException(INVALID_INPUT);
         }
-        return new int[] {parseInt(parts[0]), parseInt(parts[1])};
+        return List.of(parseInt(parts[0]), parseInt(parts[1]));
     }
 }
