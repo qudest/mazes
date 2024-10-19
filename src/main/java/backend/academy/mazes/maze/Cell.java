@@ -22,6 +22,10 @@ public record Cell(Type type) {
         }
     }
 
+    public int getWeight() {
+        return type.weight();
+    }
+
     public static Type getRandomPassage() {
         double defaultPassageChance = 0.8;
 
