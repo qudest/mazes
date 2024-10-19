@@ -15,11 +15,18 @@ public final class GridUtils {
         return grid;
     }
 
+    public static boolean isAvailableForCarve(Cell[][] grid, Coordinate to) {
+        return isWithin(grid, to) && grid[to.y()][to.x()].type().equals(Cell.Type.WALL);
+    }
+
     public static boolean isAvailableForMove(Cell[][] grid, Coordinate to) {
+        return isWithin(grid, to) && !grid[to.y()][to.x()].type().equals(Cell.Type.WALL);
+    }
+
+    private static boolean isWithin(Cell[][] grid, Coordinate to) {
         int y = to.y();
         int x = to.x();
-        return (y > 0 && y < grid.length - 1 && x > 0 && x < grid[0].length - 1 &&
-            grid[y][x].type().equals(Cell.Type.WALL));
+        return (y > 0 && y < grid.length - 1 && x > 0 && x < grid[0].length - 1);
     }
 
     public static void removeWallBetween(Cell[][] grid, Coordinate from, Coordinate to) {
