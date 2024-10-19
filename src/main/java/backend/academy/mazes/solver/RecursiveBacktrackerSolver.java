@@ -49,7 +49,7 @@ public class RecursiveBacktrackerSolver implements Solver {
     }
 
     @Override public String toString() {
-        return "Recursive Backtracker";
+        return "Recursive Backtracker, DFS (не учитывает поверхности)";
     }
 
 }
