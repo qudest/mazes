@@ -50,7 +50,7 @@ public class ConsoleInput implements Input {
             int item = parseInt(bufferedReader.readLine());
             return generators.get(item - 1);
         } catch (Exception e) {
-            throw new IOException(INVALID_INPUT);
+            throw new IOException(INVALID_INPUT, e);
         }
     }
 
@@ -60,7 +60,7 @@ public class ConsoleInput implements Input {
             int item = parseInt(bufferedReader.readLine());
             return solvers.get(item - 1);
         } catch (Exception e) {
-            throw new IOException(INVALID_INPUT);
+            throw new IOException(INVALID_INPUT, e);
         }
     }
 
@@ -68,7 +68,7 @@ public class ConsoleInput implements Input {
         try {
             return Integer.parseInt(line);
         } catch (NumberFormatException e) {
-            throw new IOException(INVALID_INPUT);
+            throw new IOException(INVALID_INPUT, e);
         }
     }
 
