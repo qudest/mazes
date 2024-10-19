@@ -55,19 +55,19 @@ class ConsoleInputTest {
             Coordinate coordinate = consoleInput.inputCoordinate(maze);
             assertEquals(new Coordinate(1, 1), coordinate);
             when(reader.readLine()).thenReturn("-1 -1");
-            assertThrows(IOException.class, consoleInput::inputSize);
+            assertThrows(IOException.class, () -> consoleInput.inputCoordinate(maze));
             when(reader.readLine()).thenReturn("5 5 5");
-            assertThrows(IOException.class, consoleInput::inputSize);
+            assertThrows(IOException.class, () -> consoleInput.inputCoordinate(maze));
             when(reader.readLine()).thenReturn("5");
-            assertThrows(IOException.class, consoleInput::inputSize);
+            assertThrows(IOException.class, () -> consoleInput.inputCoordinate(maze));
             when(reader.readLine()).thenReturn("abc abc");
-            assertThrows(IOException.class, consoleInput::inputSize);
+            assertThrows(IOException.class, () -> consoleInput.inputCoordinate(maze));
             when(reader.readLine()).thenReturn("");
-            assertThrows(IOException.class, consoleInput::inputSize);
-            when(reader.readLine()).thenReturn("0, 0"); // стена
-            assertThrows(IOException.class, consoleInput::inputSize);
+            assertThrows(IOException.class, () -> consoleInput.inputCoordinate(maze));
+            when(reader.readLine()).thenReturn("0 0"); // стена
+            assertThrows(IOException.class, () -> consoleInput.inputCoordinate(maze));
             when(reader.readLine()).thenReturn("5 5"); // выходит за размеры лабиринта
-            assertThrows(IOException.class, consoleInput::inputSize);
+            assertThrows(IOException.class, () -> consoleInput.inputCoordinate(maze));
 
         }
 
