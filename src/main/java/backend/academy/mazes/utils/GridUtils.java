@@ -30,8 +30,8 @@ public final class GridUtils {
     }
 
     public static void removeWallBetween(Cell[][] grid, Coordinate from, Coordinate to) {
-        int yBetween = (from.y() + to.y()) / 2;
-        int xBetween = (from.x() + to.x()) / 2;
+        int yBetween = from.y() + (to.y() - from.y()) / 2;
+        int xBetween = from.x() + (to.x() - from.x()) / 2;
         grid[yBetween][xBetween] = new Cell(Cell.Type.PASSAGE);
     }
 
