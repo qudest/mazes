@@ -39,7 +39,7 @@ public class MazeRenderer implements Renderer {
         for (int row = 0; row < maze.getHeight(); row++) {
             stringBuilder.append(lineCounter);
             stringBuilder.append(" ");
-            if (lineCounter < 10) {
+            if (String.valueOf(lineCounter).length() == 1) {
                 stringBuilder.append(" ");
             }
 
@@ -58,7 +58,7 @@ public class MazeRenderer implements Renderer {
     private void renderColumnNumbers(StringBuilder stringBuilder, int width) {
         stringBuilder.append(EMPTY_CELL_SPRITE);
         IntStream.range(0, width).forEach(i -> {
-            if (i < 10) {
+            if (String.valueOf(i).length() == 1) {
                 stringBuilder.append(" ");
             }
             stringBuilder.append(i);

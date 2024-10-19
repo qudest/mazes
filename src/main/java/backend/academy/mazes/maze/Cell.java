@@ -9,6 +9,8 @@ import lombok.Getter;
 
 public record Cell(Type type) {
 
+    private static final double DEFAULT_PASSAGE_CHANCE = 0.8;
+
     @Getter public enum Type {
         WALL(100),
         PASSAGE(2),
@@ -27,15 +29,13 @@ public record Cell(Type type) {
     }
 
     public static Type getRandomPassage() {
-        double defaultPassageChance = 0.8;
-
         List<Type> surfaces = new ArrayList<>(
             Arrays.stream(Type.values())
                 .filter(t -> !t.equals(Type.WALL) && !t.equals(Type.PASSAGE))
                 .toList());
 
         double i = SecureRandomSingleton.getInstance().nextDouble();
-        if (i > defaultPassageChance) {
+        if (i > DEFAULT_PASSAGE_CHANCE) {
             Collections.shuffle(surfaces);
             return surfaces.getFirst();
         } else {
