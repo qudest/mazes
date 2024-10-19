@@ -52,8 +52,8 @@ public class DijkstraSolver implements Solver {
                 Coordinate neighbor = direction.getShiftedCoordinate(currentCoordinate);
 
                 if (GridUtils.isAvailableForMove(grid, neighbor)) {
-                    int newDist = dist[currentCoordinate.y()][currentCoordinate.x()] +
-                        grid[neighbor.y()][neighbor.x()].getWeight();
+                    int newDist = dist[currentCoordinate.y()][currentCoordinate.x()]
+                        + grid[neighbor.y()][neighbor.x()].getWeight();
 
                     if (newDist < dist[neighbor.y()][neighbor.x()]) {
                         dist[neighbor.y()][neighbor.x()] = newDist;
@@ -80,17 +80,11 @@ public class DijkstraSolver implements Solver {
         return path;
     }
 
-    private static class CellInfo {
-        Coordinate coordinate;
-        int distance;
-
-        public CellInfo(Coordinate coordinate, int distance) {
-            this.coordinate = coordinate;
-            this.distance = distance;
-        }
-    }
-
     @Override public String toString() {
         return "Dijkstra's Algorithm (учитывает поверхности)";
     }
+
+    private record CellInfo(Coordinate coordinate, int distance) {
+    }
+
 }

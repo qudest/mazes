@@ -33,8 +33,8 @@ public class ConsoleInput implements Input {
     @Override
     public Coordinate inputCoordinate(Maze maze) throws IOException {
         int[] arguments = inputTwoIntArguments();
-        if (arguments[0] < 0 || arguments[1] < 0 || arguments[0] >= maze.getHeight() ||
-            arguments[1] >= maze.getWidth()) {
+        if (arguments[0] < 0 || arguments[1] < 0
+            || arguments[0] >= maze.getHeight() || arguments[1] >= maze.getWidth()) {
             throw new IOException(INVALID_COORDINATE);
         }
         Coordinate coordinate = new Coordinate(arguments[0], arguments[1]);
