@@ -78,6 +78,9 @@ public class ConsoleInput implements Input {
 
     private List<Integer> inputTwoIntArguments() throws IOException {
         String line = bufferedReader.readLine();
+        if (line == null) {
+            throw new IOException(INVALID_INPUT);
+        }
         String[] parts = line.split(" ");
         if (parts.length != 2) {
             throw new IOException(INVALID_INPUT);
