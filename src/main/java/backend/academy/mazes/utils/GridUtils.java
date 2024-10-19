@@ -35,4 +35,7 @@ public final class GridUtils {
         grid[yBetween][xBetween] = new Cell(Cell.Type.PASSAGE);
     }
 
+    private GridUtils() {
+    }
+
 }
