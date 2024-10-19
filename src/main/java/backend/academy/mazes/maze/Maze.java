@@ -8,11 +8,11 @@ public final class Maze {
     private final Cell[][] grid;
 
     public Cell[][] getGrid() {
-        Cell[][] grid = Arrays.copyOf(this.grid, this.grid.length);
-        for (int i = 0; i < grid.length; i++) {
-            grid[i] = Arrays.copyOf(this.grid[i], this.grid[i].length);
+        Cell[][] gridCopy = Arrays.copyOf(this.grid, this.grid.length);
+        for (int i = 0; i < gridCopy.length; i++) {
+            gridCopy[i] = Arrays.copyOf(this.grid[i], this.grid[i].length);
         }
-        return grid;
+        return gridCopy;
     }
 
     public Maze(Cell[][] grid) {
