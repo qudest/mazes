@@ -76,7 +76,7 @@ public class HuntAndKill implements Generator {
     private Coordinate hunt(Cell[][] grid) {
         for (int y = 1; y < grid.length - 1; y += 1) {
             for (int x = 1; x < grid[0].length - 1; x += 1) {
-                if (grid[y][x].type().equals(Cell.Type.WALL)) {
+                if (grid[y][x].type() == Cell.Type.WALL) {
                     boolean flag = true;
                     for (Shift shift : smallShifts) {
                         Coordinate to = shift.getShiftedCoordinate(new Coordinate(y, x));

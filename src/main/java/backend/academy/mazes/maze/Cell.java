@@ -31,7 +31,7 @@ public record Cell(Type type) {
     public static Type getRandomPassage() {
         List<Type> surfaces = new ArrayList<>(
             Arrays.stream(Type.values())
-                .filter(t -> !t.equals(Type.WALL) && !t.equals(Type.PASSAGE))
+                .filter(t -> t != Type.WALL && t != Type.PASSAGE)
                 .toList());
 
         double i = SecureRandomSingleton.getInstance().nextDouble();

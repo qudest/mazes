@@ -16,11 +16,11 @@ public final class GridUtils {
     }
 
     public static boolean isAvailableForCarve(Cell[][] grid, Coordinate to) {
-        return isWithin(grid, to) && grid[to.y()][to.x()].type().equals(Cell.Type.WALL);
+        return isWithin(grid, to) && grid[to.y()][to.x()].type() == Cell.Type.WALL;
     }
 
     public static boolean isAvailableForMove(Cell[][] grid, Coordinate to) {
-        return isWithin(grid, to) && !grid[to.y()][to.x()].type().equals(Cell.Type.WALL);
+        return isWithin(grid, to) && grid[to.y()][to.x()].type() != Cell.Type.WALL;
     }
 
     private static boolean isWithin(Cell[][] grid, Coordinate to) {

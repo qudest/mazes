@@ -68,7 +68,7 @@ public class MazeRenderer implements Renderer {
     }
 
     private String renderCell(Cell cell, Coordinate cellCoordinate, List<Coordinate> path) {
-        if (cell.type().equals(Cell.Type.WALL)) {
+        if (cell.type() == Cell.Type.WALL) {
             return WALL_SPRITE;
         } else {
             return renderPassage(cell, cellCoordinate, path);

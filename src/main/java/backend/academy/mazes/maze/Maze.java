@@ -20,7 +20,7 @@ public final class Maze {
     }
 
     public boolean isWall(Coordinate coordinate) {
-        return grid[coordinate.y()][coordinate.x()].type().equals(Cell.Type.WALL);
+        return grid[coordinate.y()][coordinate.x()].type() == Cell.Type.WALL;
     }
 
     public int getHeight() {
