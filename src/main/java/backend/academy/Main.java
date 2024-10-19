@@ -10,6 +10,7 @@ import backend.academy.mazes.solver.DijkstraSolver;
 import backend.academy.mazes.solver.RecursiveBacktrackerSolver;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.List;
 import lombok.experimental.UtilityClass;
 
@@ -19,7 +20,7 @@ public class Main {
     public static void main(String[] args) {
         MazeManager mazeManager =
             new MazeManager(
-                new ConsoleInput(new BufferedReader(new InputStreamReader(System.in))),
+                new ConsoleInput(new BufferedReader(new InputStreamReader(System.in, Charset.defaultCharset()))),
                 new MazeRenderer(),
                 new ConsoleOutput(System.out),
                 List.of(new RecursiveBacktrackerGenerator(), new HuntAndKill()),
