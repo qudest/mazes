@@ -24,7 +24,7 @@ public class ConsoleInput implements Input {
     @Override
     public Size inputSize() throws IOException {
         int[] size = inputTwoIntArguments();
-        if (size[0] < 3 || size[1] < 3 || size[0] > 100 || size[1] > 100) {
+        if (size[0] < Size.MIN_SIZE || size[1] < Size.MIN_SIZE || size[0] > Size.MAX_SIZE || size[1] > Size.MAX_SIZE) {
             throw new IOException(INVALID_SIZE);
         }
         return new Size(size[0], size[1]);
