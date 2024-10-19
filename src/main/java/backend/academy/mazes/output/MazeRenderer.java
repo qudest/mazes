@@ -15,8 +15,9 @@ public class MazeRenderer implements Renderer {
     private static final String PATH_BACKGROUND = "\u001B[42m";
     private static final String ENDS_BACKGROUND = "\u001B[46m";
 
-    private static final String WALL_SPRITE = WALL_BACKGROUND + "   " + ANSI_RESET;
-    private static final String PASSAGE_SPRITE = "   " + ANSI_RESET;
+    private static final String EMPTY_CELL_SPRITE = "   ";
+    private static final String WALL_SPRITE = WALL_BACKGROUND + EMPTY_CELL_SPRITE + ANSI_RESET;
+    private static final String PASSAGE_SPRITE = EMPTY_CELL_SPRITE + ANSI_RESET;
     private static final String BOOST_SPRITE = " \u001B[93m● " + ANSI_RESET;
     private static final String DELAY_SPRITE = " \u001B[91m╳ " + ANSI_RESET;
 
@@ -55,9 +56,8 @@ public class MazeRenderer implements Renderer {
     }
 
     private void renderColumnNumbers(StringBuilder stringBuilder, int width) {
-        stringBuilder.append("   ");
-        IntStream.range(0, width).forEach(i ->
-        {
+        stringBuilder.append(EMPTY_CELL_SPRITE);
+        IntStream.range(0, width).forEach(i -> {
             if (i < 10) {
                 stringBuilder.append(" ");
             }
