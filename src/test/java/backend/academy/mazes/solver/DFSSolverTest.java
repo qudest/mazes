@@ -10,9 +10,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class RecursiveBacktrackerSolverTest {
+class DFSSolverTest {
 
-    private final Solver solver = new RecursiveBacktrackerSolver();
+    private final Solver solver = new DFSSolver();
     private final Renderer renderer = new MazeRenderer();
 
     @Test

@@ -6,7 +6,7 @@ import backend.academy.mazes.maze.coordinate.Shift;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecursiveBacktrackerSolver implements Solver {
+public class DFSSolver implements Solver {
 
     private final List<Shift> directions = List.of(
         new Shift(0, 1),
@@ -49,7 +49,7 @@ public class RecursiveBacktrackerSolver implements Solver {
     }
 
     @Override public String toString() {
-        return "Recursive Backtracker, DFS (не учитывает поверхности)";
+        return "Depth-First Search, DFS (не учитывает поверхности)";
     }
 
 }

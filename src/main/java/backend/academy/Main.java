@@ -6,8 +6,8 @@ import backend.academy.mazes.generator.RecursiveBacktrackerGenerator;
 import backend.academy.mazes.input.ConsoleInput;
 import backend.academy.mazes.output.ConsoleOutput;
 import backend.academy.mazes.output.MazeRenderer;
+import backend.academy.mazes.solver.DFSSolver;
 import backend.academy.mazes.solver.DijkstraSolver;
-import backend.academy.mazes.solver.RecursiveBacktrackerSolver;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
@@ -24,7 +24,7 @@ public class Main {
                 new MazeRenderer(),
                 new ConsoleOutput(System.out),
                 List.of(new RecursiveBacktrackerGenerator(), new HuntAndKill()),
-                List.of(new RecursiveBacktrackerSolver(), new DijkstraSolver())
+                List.of(new DFSSolver(), new DijkstraSolver())
             );
         mazeManager.start();
     }
