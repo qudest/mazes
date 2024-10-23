@@ -31,4 +31,8 @@ public final class Maze {
         return grid[0].length;
     }
 
+    public boolean isEmpty() {
+        return grid == null || grid.length == 0 || grid[0].length == 0;
+    }
+
 }
