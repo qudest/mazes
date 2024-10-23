@@ -31,6 +31,10 @@ public class MazeRenderer implements Renderer {
 
     @Override
     public String render(Maze maze, List<Coordinate> path) {
+        if (maze == null || maze.isEmpty()) {
+            return "";
+        }
+
         StringBuilder stringBuilder = new StringBuilder();
         Cell[][] grid = maze.getGrid();
 
